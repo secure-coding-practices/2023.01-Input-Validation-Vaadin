@@ -1,7 +1,6 @@
-# OWASP
+# OWASP Examples
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+This project contains OWASP Secure Coding Practices Examples using Vaadin. 
 
 ## Running the application
 

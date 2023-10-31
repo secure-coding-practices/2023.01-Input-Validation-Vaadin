@@ -18,11 +18,11 @@ import org.vaadin.lineawesome.LineAwesomeIcon;
 /**
  * The main view is a top-level placeholder for other views.
  */
-public class MainLayout extends AppLayout {
+public class MainMenuLayout extends AppLayout {
 
     private H2 viewTitle;
 
-    public MainLayout() {
+    public MainMenuLayout() {
         setPrimarySection(Section.DRAWER);
         addDrawerContent();
         addHeaderContent();
