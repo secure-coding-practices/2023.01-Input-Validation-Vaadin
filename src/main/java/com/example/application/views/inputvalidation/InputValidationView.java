@@ -8,6 +8,7 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -58,6 +59,7 @@ public class InputValidationView extends Composite<VerticalLayout> {
         // Setting a pattern to validate ISBN-10 or ISBN-13 format
         isbnField.setPattern(ISBN_PATTERN);
 
+        // Validation using events
         Button validateButton = new Button("Validate using format", event -> {
             String isbn = isbnField.getValue();
 
@@ -69,6 +71,7 @@ public class InputValidationView extends Composite<VerticalLayout> {
                 isbnField.setInvalid(true);
             }
         });
+
         Button validateButton2 = new Button("Validate using service", event -> {
             String isbn = isbnField.getValue();
 
