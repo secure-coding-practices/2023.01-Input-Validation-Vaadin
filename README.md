@@ -1,6 +1,4 @@
-# OWASP Examples
-
-Sven can write to the repo ;-)
+# Input-Validation Examples using Vaadin
 
 This project contains OWASP Secure Coding Practices Examples using Vaadin. 
 
