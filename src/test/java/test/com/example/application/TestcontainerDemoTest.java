@@ -15,7 +15,7 @@ import java.sql.SQLException;
 @Testcontainers
 public class TestcontainerDemoTest {
 
-    public static DockerImageName POSTGRES_TEST_IMAGE = DockerImageName.parse("postgres:9.6.12");
+    public static DockerImageName POSTGRES_TEST_IMAGE = DockerImageName.parse("postgres:16.0");
     // jdbc:tc:postgresql:9.6.8:///databasename
 
     @Container
