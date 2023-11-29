@@ -20,23 +20,13 @@ import java.util.stream.Collectors;
 
 @PageTitle("Input Validation")
 @Route(value = "hello", layout = MainMenuLayout.class)
-public class InputValidationView extends Composite<VerticalLayout> {
+public class UserInputValidationView extends Composite<VerticalLayout> {
 
-    private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;";
     private static final String USER = "sa";
     private static final String PASS = "";
     public static final String ISBN_PATTERN = "(97[89][-–—]?)?(\\d{1,5}[-–—]?\\d{1,7}[-–—]?\\d{1,7}[-–—]?\\d{1,2}|\\d{1,7}[-–—]?\\d{1,7}[-–—]?\\d{1,7}[-–—]?\\d{1,7})";
 
-    static {
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             Statement stmt = conn.createStatement()) {
-            stmt.execute("CREATE TABLE users (id INT AUTO_INCREMENT, name VARCHAR(255))");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public InputValidationView() {
+    public UserInputValidationView() {
         getContent().setWidthFull();
 
         // ISBN Validation
@@ -84,38 +74,6 @@ public class InputValidationView extends Composite<VerticalLayout> {
         });
         getContent().add(isbnField, validateButton, validateButton2);
 
-
-        // SQL Injection sample
-        getContent().add(new H2("SQL Injection"));
-        getContent().add(new Text("Try searching with the following string: %'; DROP TABLE users; --"));
-
-        TextField searchField = new TextField("Search");
-        Button searchButton = new Button("Unsafe Search", event -> {
-            String searchTerm = searchField.getValue();
-
-            String unsafeSql = "SELECT * FROM users WHERE name LIKE '%" + searchTerm + "%'";
-            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                 PreparedStatement stmt = conn.prepareStatement(unsafeSql)) {
-                // Execute SQL unsafe query
-                Notification.show("Executing SQL: "+ unsafeSql);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
-
-        Button safesearchButton = new Button("Safe Search", event -> {
-            String searchTerm = searchField.getValue();
-            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                 PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE name LIKE ?")) {
-                 stmt.setString(1, "%" + searchTerm + "%");
-                // Execute SQL query safely
-                Notification.show("Executing "+ stmt);
-                stmt.execute();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
-        getContent().add(searchField, searchButton, safesearchButton);
 
     }
 
