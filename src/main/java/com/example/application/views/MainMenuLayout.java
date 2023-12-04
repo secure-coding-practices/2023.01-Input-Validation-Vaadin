@@ -1,6 +1,8 @@
 package com.example.application.views;
 
-import com.example.application.views.inputvalidation.InputValidationView;
+import com.example.application.views.inputvalidation.SQLValidation;
+import com.example.application.views.inputvalidation.UploadValidationView;
+import com.example.application.views.inputvalidation.UserInputValidationView;
 import com.example.application.views.welcome.WelcomeView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -52,8 +54,12 @@ public class MainMenuLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Welcome", WelcomeView.class, LineAwesomeIcon.HOME_SOLID.create()));
-        nav.addItem(new SideNavItem("Input Validation", InputValidationView.class,
+        nav.addItem(new SideNavItem("Input Validation", UserInputValidationView.class,
                 LineAwesomeIcon.CHECK_DOUBLE_SOLID.create()));
+        nav.addItem(new SideNavItem("Upload Validation", UploadValidationView.class,
+                LineAwesomeIcon.CLOUD_SOLID.create()));
+        nav.addItem(new SideNavItem("SQL Validation", SQLValidation.class,
+                LineAwesomeIcon.DATABASE_SOLID.create()));
 
         return nav;
     }

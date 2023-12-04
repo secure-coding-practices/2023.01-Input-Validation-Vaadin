@@ -1,4 +1,4 @@
-package test.com.example.application;
+package org.example.application;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,6 @@ import java.sql.SQLException;
 public class TestcontainerDemoTest {
 
     public static DockerImageName POSTGRES_TEST_IMAGE = DockerImageName.parse("postgres:16.0");
-    // jdbc:tc:postgresql:9.6.8:///databasename
 
     @Container
     private final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(POSTGRES_TEST_IMAGE)

@@ -109,6 +109,12 @@
             <version>2.2.224</version>
         </dependency>
 
+        <!-- Use Apache Tika for content detection sample -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>2.9.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
