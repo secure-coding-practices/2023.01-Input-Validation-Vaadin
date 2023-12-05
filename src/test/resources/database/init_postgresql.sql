@@ -23,4 +23,12 @@ CREATE TABLE account_roles (
                                    REFERENCES accounts (user_id)
 );
 
+-- Test data: two roles
+INSERT INTO roles VALUES (0, 'admin');
+INSERT INTO roles VALUES (1, 'user');
 
+-- Test data: two users
+INSERT INTO accounts VALUES (1, 'user1', 'password1', 'user1@email.com', NOW(), NULL);
+INSERT INTO account_roles VALUES (1, 1, NOW());
+INSERT INTO accounts VALUES (2, 'user2', 'password2', 'user2@email.com', NOW(), NULL);
+INSERT INTO account_roles VALUES (2, 1, NOW());
