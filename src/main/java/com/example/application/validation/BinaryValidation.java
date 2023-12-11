@@ -53,7 +53,7 @@ public class BinaryValidation {
      * <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG at Wikipedia</a>
      *
      * @param data Binary data to validate.
-     * @return ValidationResult.VALUE_OK if String is valid PNG, ValidationResult.INVALID_JPEG otherwise
+     * @return ValidationResult.VALUE_OK if String is valid PNG, ValidationResult.INVALID_PNG otherwise
      */
     public static ValidationResult isValidPNG(byte[] data) {
         try {
