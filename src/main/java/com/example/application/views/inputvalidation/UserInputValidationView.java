@@ -31,7 +31,6 @@ public class UserInputValidationView extends Composite<VerticalLayout> {
         getContent().add(new Text("Try entering: ke$ha123"));
         TextField usernameField = new TextField("Username");
         usernameField.setPattern("[a-zA-Z0-9]*");
-        usernameField.getDefaultValidator();
         getContent().add(usernameField);
 
         TextField email = new TextField("Email");
