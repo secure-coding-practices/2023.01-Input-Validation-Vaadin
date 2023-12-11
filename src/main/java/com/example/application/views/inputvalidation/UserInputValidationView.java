@@ -11,8 +11,12 @@ import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.Validator;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import jakarta.validation.constraints.Pattern;
 
 @PageTitle("Input Validation")
 @Route(value = "input", layout = MainMenuLayout.class)
@@ -28,8 +32,16 @@ public class UserInputValidationView extends Composite<VerticalLayout> {
         getContent().add(new H4("Username validation"));
         getContent().add(new Text("Try entering: ke$ha123"));
         TextField usernameField = new TextField("Username");
-        usernameField.setPattern("[a-zA-Z0-9]*");
+        usernameField.setPattern("^[a-zA-Z0-9]+$");
         getContent().add(usernameField);
+
+        // JSR-303 Bean Validation
+        TextField beanUsernameField = new TextField("Username");
+        Binder<User> userBinder = new BeanValidationBinder<>(User.class);
+        userBinder.forField(beanUsernameField).bind("username");
+        User user = new User();
+        userBinder.setBean(user);
+        getContent().add(beanUsernameField);
 
         TextField email = new TextField("Email");
         email.setPattern(InputValidation.EMAIL_PATTERN);
@@ -82,4 +94,33 @@ public class UserInputValidationView extends Composite<VerticalLayout> {
 
 
 
+    public class User {
+
+        @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric")
+        private String username;
+        private String password;
+        private String role;
+        public User(String username, String password, String role) {
+            this.username = username;
+            this.password = password;
+            this.role = role;
+        }
+
+        public User() {
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+        public String getPassword() {
+            return password;
+        }
+        public String getRole() {
+            return role;
+        }
+    }
 }
