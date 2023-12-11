@@ -24,7 +24,7 @@ public class UserInputValidationView extends Composite<VerticalLayout> {
     public UserInputValidationView() {
         getContent().setWidthFull();
 
-        // ISBN Validation
+        // Username pattern validation
         getContent().add(new H4("Username validation"));
         getContent().add(new Text("Try entering: ke$ha123"));
         TextField usernameField = new TextField("Username");
