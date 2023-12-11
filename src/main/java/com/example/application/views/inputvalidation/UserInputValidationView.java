@@ -86,9 +86,20 @@ public class UserInputValidationView extends Composite<VerticalLayout> {
             }
 
         });
+
+        isbnField.addValueChangeListener(event -> {
+            String isbn = event.getValue();
+            event.getSource().setInvalid(false);
+            if (InputValidation.validateISBN(isbn) == ValidationResult.OK) {
+                Notification.show("Valid ISBN format");
+            } else {
+                Notification.show("Invalid ISBN format");
+                event.getSource().setInvalid(true);
+            }
+        });
+
+
         getContent().add(isbnField, validateButton, validateButton2);
-
-
     }
 
 
